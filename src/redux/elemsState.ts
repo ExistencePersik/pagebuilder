@@ -102,40 +102,109 @@ export const elementsState: IElementsState = {
 
       "Content 1": {
         name: "Content 1",
-        cover: '1',
+        cover: './img/cover/content1.jpg',
         images: {
-          'content1-img': '1',
+          'content1-img': './img/Workflow_2.png',
         },
         html: `
-        <div class="content1">
-          <p>1</p>
-        </div>
+        <article class="content1">
+          <div class="container">
+            <h2>Your landing page is cool</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </p>
+            <ul>
+              <li>
+                <h3>1000+ clients</h3>
+              </li>
+              <li>
+                <h3>Worlds No.1</h3>
+              </li>
+            </ul>
+          </div>
+          <img src="content1-img" alt="Enthusiastic workers">
+        </article>
         `
       },
 
       "Content 2": {
         name: "Content 2",
-        cover: '2',
+        cover: './img/cover/content2.jpg',
         images: {
-          'content2-img': '2',
+          'content2-img': '',
         },
         html: `
-        <div class="content2">
-          <p>2</p>
-        </div>
+        <article class="content2">
+          <div class="container">
+            <h2>Your landing page is cool</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </p>
+            <div class="button-container">
+              <a href="#" class="button">Let's do this!</a>
+            </div>
+          </div>
+          <ul>
+            <li>
+              <h3>Lorem ipsum</h3>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </li>
+            <li>
+              <h3>Lorem ipsum</h3>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </li>
+            <li>
+              <h3>Lorem ipsum</h3>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </li>
+          </ul>
+        </article>
         `
       },
 
       "Content 3": {
         name: "Content 3",
-        cover: '3',
+        cover: './img/cover/content3.jpg',
         images: {
-          'content3-img': '3',
+          'content3-img': '',
         },
         html: `
-        <div class="content3">
-          <p>3</p>
-        </div>
+        <article class="content3">
+          <ul>
+            <li>
+              <h3>Lorem ipsum</h3>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </li>
+            <li>
+              <h3>Lorem ipsum</h3>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </li>
+            <li>
+              <h3>Lorem ipsum</h3>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Pellentesque at erat posuere, pellentesque est at, eleifend enim.
+            </li>
+          </ul>
+        </article>
         `
       },
 

@@ -1,0 +1,160 @@
+.content2 {
+  position: relative;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0;
+  margin: 5% 1%;
+}
+
+.content2 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.content2 h2 {
+  font-size: 75px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.content2 h3 {
+  font-size: 65px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.content2 p {
+  font-weight: normal;
+  font-size: 60px;
+  margin: 30px 0;
+}
+
+.content2 a {
+  text-decoration: none;
+}
+
+.content2 img {
+  width: 80%;
+  margin-top: 30px;
+}
+
+.content2 ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content2 li {
+  border: none;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 50px 50px;
+  color: var(--fontDark);
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+  margin: 2%;
+  font-size: 60px;
+}
+
+.content2 .button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.content2 .button {
+  border: none;
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 300px;
+  font-size: 40px;
+  padding: 34px 45px;
+  background: var(--baseBlue);
+  color: white;
+}
+
+@media (min-device-width: 480px) {
+  .content2 {
+    flex-direction: row;
+    margin: 0 5%;
+  }
+  .content2 .container {
+    width: 40%;
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .content2 h2 {
+    font-size: 35px;
+  }
+  .content2 h3 {
+    font-size: 30px;
+  }
+  .content2 p {
+    font-size: 30px;
+  }
+  .content2 ul {
+    width: 60%;
+    display: flex;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  .content2 li {
+    margin: 10px;
+    min-width: 110px;
+    min-height: 110px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    background-color: getColor(cardColor);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: default;
+    padding: 20px 10px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+    font-size: 25px;
+  }
+  .content2 .button{
+    min-width: 150px;
+    font-size: 17px;
+    padding: 14px 15px;
+  }
+}
+@media (min-device-width: 1120px) {
+  .content2 {
+    margin: 0 10%;
+  }
+  .content2 h2 {
+    font-size: 45px;
+  }
+  .content2 p {
+    font-size: 20px;
+  }
+  .content2 ul {
+    width: 40%;
+  }
+}

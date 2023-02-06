@@ -7,6 +7,7 @@
   flex-direction: column;
   padding: 0;
   margin: 5% 1%;
+  color: var(--fontDark);
 }
 
 .content1 .container {
@@ -25,6 +26,7 @@
 }
 
 .content1 h3 {
+  color: var(--baseBlue);
   font-size: 45px;
   font-weight: 500;
   margin: 0;
@@ -59,7 +61,6 @@
   align-items: center;
   border-radius: 15px;
   transition: all 0.3s ease;
-  cursor: pointer;
   padding: 50px 50px;
   color: var(--fontDark);
   background-color: white;
@@ -96,29 +97,17 @@
   }
   .content1 ul {
     width: 100%;
-    display: flex;
     margin: 0;
-    flex-wrap: wrap;
   }
   .content1 li {
-    margin: 10px;
     min-width: 110px;
     min-height: 110px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: getColor(cardColor);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    cursor: default;
     padding: 20px 10px;
-    box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+    margin: 10px;
   }
 }
 @media (min-device-width: 1120px) {
   .content1 {
-    flex-direction: row;
     margin: 0 10%;
     margin-bottom: 5%;
   }

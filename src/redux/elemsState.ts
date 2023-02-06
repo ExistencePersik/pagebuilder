@@ -213,26 +213,78 @@ export const elementsState: IElementsState = {
 
       "Footer 1": {
         name: "Footer 1",
-        cover: '1',
+        cover: './img/cover/footer1.jpg',
         images: {
-          'footer1-img': '1',
+          'footer1-img': './img/Plants care_2.png',
         },
         html: `
         <footer class="footer1">
-          <p>1</p>
+          <div class="container">
+            <div class="container__img">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <img src="footer1-img" alt="Worker, cat and plant">
+            </div>
+            <div class="container__list">
+              <h4>Product help</h4>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Tools & Integrations</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">System</a></li>
+              </ul>
+            </div>
+            <div class="container__list">
+              <h4>Contact</h4>
+              <ul>
+                <li>E-mail: lorem@ipsum.com</li>
+                <li>Telegram: @lo******um</li>
+                <li>WhatsApp: +00000000000</li>
+              </ul>
+            </div>
+            <p class="sign">created with <span>pagebuilder</span></p>
+          </div>
         </footer>
         `
       },
 
       "Footer 2": {
         name: "Footer 2",
-        cover: '2',
+        cover: './img/cover/footer2.jpg',
         images: {
-          'footer2-img': '2',
+          'footer2-img': './img/Message sent_2.png',
         },
         html: `
         <footer class="footer2">
-          <p>2</p>
+          <div class="container">
+            <div class="container__img">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <img src="footer2-img" alt="Workers office desk">
+            </div>
+            <div class="container__list">
+              <h4>Product help</h4>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Privacy policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Tools & Integrations</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">System</a></li>
+              </ul>
+            </div>
+            <div class="container__list">
+              <h4>Contact</h4>
+              <ul>
+                <li>E-mail: lorem@ipsum.com</li>
+                <li>Telegram: @lo******um</li>
+                <li>WhatsApp: +00000000000</li>
+              </ul>
+            </div>
+            <p class="sign">created with <span>pagebuilder</span></p>
+          </div>
         </footer>
         `
       },

@@ -7,6 +7,7 @@
   flex-direction: column;
   padding: 0;
   margin: 5% 1%;
+  color: var(--fontDark);
 }
 
 .content3 .container {
@@ -43,7 +44,6 @@
   text-align: center;
   border-radius: 15px;
   transition: all 0.3s ease;
-  cursor: pointer;
   padding: 50px 50px;
   color: var(--fontDark);
   background-color: white;
@@ -65,12 +65,11 @@
     font-size: 30px;
   }
   .content3 li {
-    margin: 10px;
     min-width: 110px;
     min-height: 110px;
     transition: all 0.3s ease;
-    cursor: default;
     padding: 20px 10px;
+    margin: 10px;
     font-size: 25px;
   }
 }

@@ -7,6 +7,7 @@
   flex-direction: column;
   padding: 0;
   margin: 5% 1%;
+  color: var(--fontDark);
 }
 
 .header1 .container {
@@ -36,7 +37,6 @@
 
 .header1 a {
   text-decoration: none;
-  color: var(--fontDark);
 }
 
 .header1 img {

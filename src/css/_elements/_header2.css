@@ -7,6 +7,7 @@
   flex-direction: column;
   padding: 0;
   margin: 5% 1%;
+  color: var(--fontDark);
 }
 
 .header2 .container {
@@ -74,7 +75,7 @@
   cursor: pointer;
   padding: 70px 10px;
   color: var(--fontDark);
-  width: 43vw;
+  width: 40%;
   background-color: white;
   box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
   margin: 1em 0;
@@ -141,22 +142,8 @@
     font-size: 17px;
     padding: 14px 15px;
   }
-  .header2 ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
   .header2 li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    cursor: pointer;
     padding: 10px 7px;
-    width: 40%;
-    margin: 1em 0;
   }
   .header2 li img {
     position: relative;

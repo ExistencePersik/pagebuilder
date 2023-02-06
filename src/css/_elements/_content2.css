@@ -7,6 +7,7 @@
   flex-direction: column;
   padding: 0;
   margin: 5% 1%;
+  color: var(--fontDark);
 }
 
 .content2 .container {
@@ -87,7 +88,6 @@
   border-radius: 15px;
   font-weight: bold;
   transition: all 0.3s ease;
-  cursor: pointer;
   min-width: 300px;
   font-size: 40px;
   padding: 34px 45px;
@@ -117,25 +117,16 @@
   }
   .content2 ul {
     width: 60%;
-    display: flex;
     margin: 0;
-    flex-wrap: wrap;
   }
   .content2 li {
-    margin: 10px;
     min-width: 110px;
     min-height: 110px;
-    display: inline-flex;
-    flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     text-align: left;
-    background-color: getColor(cardColor);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    cursor: default;
     padding: 20px 10px;
-    box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+    margin: 10px;
     font-size: 25px;
   }
   .content2 .button{

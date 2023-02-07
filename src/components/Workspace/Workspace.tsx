@@ -94,7 +94,7 @@ const Workspace = () => {
           </ButtonGroup>
         </ButtonGroup>
 
-        <div dangerouslySetInnerHTML={getHTML(element)}></div>
+        <Box dangerouslySetInnerHTML={getHTML(element)}></Box>
       </Box>
     )
   })
@@ -107,7 +107,7 @@ const Workspace = () => {
           Your workspace is empty!
         </Text> : null
       }
-      <Modal id='Workspace' finalFocusRef={finalRef} size="" motionPreset="scale" isOpen={isOpen} onClose={onClose}>
+      <Modal id='Workspace' finalFocusRef={finalRef} size="full" motionPreset="scale" scrollBehavior="inside" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Edit your element</ModalHeader>

@@ -39,7 +39,7 @@ const Elements = () => {
         <Menu>
           <MenuButton
             as={Button}
-            _hover={{backgroundColor: "#60a5fa"}}
+            _hover={{backgroundColor: "#60a5fa", transform: "scale(1.03)", boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
             rightIcon={<ChevronDownIcon />}
             w="7em"
             fontWeight="bold"
@@ -47,9 +47,17 @@ const Elements = () => {
             >
               {category}
           </MenuButton>
-          <MenuList>
+          <MenuList
+            transition="0.1s"
+          >
             {Object.keys(elements[category]).map((item, i) => {
-              return <MenuItem key={i} onClick={(e) => queryElementCategory(e, category)}>
+              return <MenuItem
+                borderRadius="5"
+                transition="0.2s"
+                _focus={{backgroundColor: "#e5e7eb", transform: "scale(0.97)", boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
+                _hover={{backgroundColor: "#e5e7eb", transform: "scale(0.97)", boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
+                key={i}
+                onClick={(e) => queryElementCategory(e, category)}>
                 <Text>
                   {item}
                 </Text>
@@ -66,7 +74,7 @@ const Elements = () => {
 
   return (
     <Box className='elementsContainer'>
-      <Heading as='h1' size='lg' p="1.5" noOfLines={1} color="white" backgroundColor="#2563eb" borderRadius="5px">Elements</Heading>
+      <Heading as='h1' size='lg' p="1.5" noOfLines={1} color="white" backgroundColor="#2563eb" borderRadius="5px" cursor="default">Elements</Heading>
       {listOfElements}
     </Box>
   )

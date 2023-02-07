@@ -65,7 +65,6 @@
   text-align: center;
   border-radius: 15px;
   transition: all 0.3s ease;
-  cursor: pointer;
   padding: 50px 50px;
   color: var(--fontDark);
   background-color: white;
@@ -93,6 +92,10 @@
   padding: 34px 45px;
   background: var(--baseBlue);
   color: white;
+}
+
+.content2 .button:hover {
+  transform: scale(1.2);
 }
 
 @media (min-device-width: 480px) {
@@ -128,6 +131,11 @@
     padding: 20px 10px;
     margin: 10px;
     font-size: 25px;
+  }
+  .content2 li:hover {
+    transform: scale(1.1);
+    color: white;
+    background-color: var(--baseBlue);
   }
   .content2 .button{
     min-width: 150px;

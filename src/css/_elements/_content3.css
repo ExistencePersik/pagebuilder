@@ -72,6 +72,11 @@
     margin: 10px;
     font-size: 25px;
   }
+  .content3 li:hover {
+    transform: scale(1.1);
+    color: white;
+    background-color: var(--baseBlue);
+  }
 }
 @media (min-device-width: 1120px) {
   .content3 {

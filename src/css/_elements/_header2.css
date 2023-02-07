@@ -72,7 +72,6 @@
   align-items: center;
   border-radius: 15px;
   transition: all 0.3s ease;
-  cursor: pointer;
   padding: 70px 10px;
   color: var(--fontDark);
   width: 40%;
@@ -105,6 +104,10 @@
   padding: 34px 45px;
   background: var(--baseBlue);
   color: white;
+}
+
+.header2 .button:hover {
+  transform: scale(1.1);
 }
 
 @media (min-device-width: 480px) {
@@ -144,6 +147,9 @@
   }
   .header2 li {
     padding: 10px 7px;
+  }
+  .header2 li:hover {
+    transform: scale(1.2);
   }
   .header2 li img {
     position: relative;

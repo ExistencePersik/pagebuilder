@@ -85,7 +85,7 @@ const Workspace = () => {
   const addedElems = elements.map((element, index) => {
     return (
       <Box key={index}>
-        <ButtonGroup spacing="1.5">
+        <ButtonGroup pl="5px" pt="5px" spacing="1.5">
           <IconButton aria-label="Delete" icon={<DeleteIcon />} color="white" colorScheme="red" onClick={() => removeElem(index)} />
           <IconButton aria-label="Edit" icon={<EditIcon />} color="white" colorScheme="green" onClick={() => editElem(index)} />
           <ButtonGroup isAttached variant="outline">

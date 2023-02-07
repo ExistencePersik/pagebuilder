@@ -65,6 +65,10 @@
   color: white;
 }
 
+.header1 .button:hover {
+  transform: scale(1.1);
+}
+
 .header1 .button-empty {
   color: var(--baseBlue);
   border: 1.5px solid var(--baseBlue);

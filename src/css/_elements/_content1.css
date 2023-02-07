@@ -59,6 +59,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   border-radius: 15px;
   transition: all 0.3s ease;
   padding: 50px 50px;
@@ -100,10 +101,13 @@
     margin: 0;
   }
   .content1 li {
-    min-width: 110px;
-    min-height: 110px;
+    width: 150px;
+    height: 150px;
     padding: 20px 10px;
     margin: 10px;
+  }
+  .content1 li:hover {
+    transform: scale(1.2);
   }
 }
 @media (min-device-width: 1120px) {

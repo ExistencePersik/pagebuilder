@@ -3,7 +3,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 import { updateCurrentElem, setEditElem } from '../../redux/elemsSlice'
 import { Box, Button, ButtonGroup, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import { ArrowDownIcon, ArrowUpIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import '../../css/style.css'
+import './Workspace.css'
+import '../../css/_style.css'
 
 const Workspace = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

@@ -2,6 +2,7 @@ import { Box, Button, Heading, Image, Menu, MenuButton, MenuItem, MenuList, Text
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 import { setCurrentElem } from '../../redux/elemsSlice'
+import './Elements.css'
 
 const Elements = () => {
   const dispatch = useAppDispatch()

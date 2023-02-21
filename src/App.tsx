@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react'
-import './App.css'
 import Elements from './components/Elements/Elements'
 import Workspace from './components/Workspace/Workspace'
 

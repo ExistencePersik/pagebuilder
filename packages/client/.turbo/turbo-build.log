@@ -1,0 +1,26 @@
+
+> client@0.1.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  175.26 kB  build\static\js\main.b4901be4.js
+  2.37 kB    build\static\css\main.af9036a5.css
+  1.78 kB    build\static\js\415.2786b592.chunk.js
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+

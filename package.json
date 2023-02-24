@@ -8,8 +8,5 @@
   ],
   "scripts": {
     "start": "concurrently \"npm start -w server\" \"npm start -w client\""
-  },
-  "devDependencies": {
-    "turbo": "^1.8.2"
   }
 }

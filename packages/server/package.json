@@ -4,7 +4,8 @@
   "private": true,
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "node index.ts",
+    "dev": "nodemon index.ts"
   },
   "dependencies": {
     "express": "^4.18.2",

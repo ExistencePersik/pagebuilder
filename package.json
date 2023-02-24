@@ -8,9 +8,5 @@
   ],
   "scripts": {
     "start": "concurrently \"npm start -w server\" \"npm start -w client\""
-  },
-  "devDependencies": {
-    "nx": "15.7.2",
-    "@nrwl/nx-cloud": "latest"
   }
 }

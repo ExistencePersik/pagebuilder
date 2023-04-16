@@ -1,69 +1,73 @@
+import { MouseEvent, useEffect } from 'react'
 import { Box, Button, Heading, Image, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
-import { setCurrentElem } from '../../redux/elemsSlice'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
+import { setCurrentElem, fetchElements } from '../../redux/elemsSlice'
+import { IElement } from '../../models/models'
 import './Elements.css'
 
 const Elements = () => {
   const dispatch = useAppDispatch()
-  const elements: {[index: string]: any} = useAppSelector(state => state.elements.Elements)
 
-  const queryElementCategory = (e: any, category: string) => {
-    let nameOfElement
+  useEffect(() => {
+    dispatch(fetchElements())
+  }, [dispatch])
 
-    if (e.target.src) {
-      nameOfElement = e.target.parentNode.parentNode.innerText
-    } else {
-      nameOfElement = e.target.innerText
-    }
+  const elements: {[index: string]: IElement[]} = useAppSelector(state => state.elements.Elements)
 
-    const element = elements[category][`${nameOfElement}`]
-    const pattern = Object.keys(element.images)
+  const queryElementCategory = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, category: string, index: number) => {
+    const element = elements[category][index]
+
+    const pattern = Object.keys(element['subject']['images'])
     let regExp
-    let result: any
+    let result: string = ''
+
+    if(pattern.length === 0) {
+      result = element.subject.html
+    }
 
     pattern.forEach(item => {
       regExp = new RegExp(item, 'g')
       if (!result) {
-        result = element.html.replace(regExp, `${element.images[item]}`)
+        result = element.subject.html.replace(regExp, `${element.subject.images[item]}`)
       } else {
-        result = result.replace(regExp, `${element.images[item]}`)
+        result = result.replace(regExp, `${element.subject.images[item]}`)
       }
     })
 
     dispatch(setCurrentElem(result))
   }
 
-  const listOfElements = Object.keys(elements).map((category, index) => {
+  const listOfElements = Object.keys(elements).map((category: string, index: number) => {
     return (
       <Box key={index}>
         <Menu>
           <MenuButton
             as={Button}
-            _hover={{backgroundColor: "#60a5fa", transform: "scale(1.03)", boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
+            _hover={{backgroundColor: '#7ab8ff', transform: 'scale(1.03)', boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}
             rightIcon={<ChevronDownIcon />}
-            w="7em"
-            fontWeight="bold"
-            fontSize="1.1em"
+            w='7em'
+            fontWeight='bold'
+            fontSize='1.1em'
             >
               {category}
           </MenuButton>
           <MenuList
-            transition="0.1s"
+            transition='0.1s'
           >
-            {Object.keys(elements[category]).map((item, i) => {
+            {Object.keys(elements[category]).map((_, i: number) => {
               return <MenuItem
-                borderRadius="5"
-                transition="0.2s"
-                _focus={{backgroundColor: "#e5e7eb", transform: "scale(0.97)", boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
-                _hover={{backgroundColor: "#e5e7eb", transform: "scale(0.97)", boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"}}
+                borderRadius='5'
+                transition='0.2s'
+                _focus={{backgroundColor: '#e5e7eb', transform: 'scale(0.97)', boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}
+                _hover={{backgroundColor: '#e5e7eb', transform: 'scale(0.97)', boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}
                 key={i}
-                onClick={(e) => queryElementCategory(e, category)}>
+                onClick={(e) => queryElementCategory(e, category, i)}>
                 <Text>
-                  {item}
+                  {elements[category][i].name}
                 </Text>
-                <Box ml="3">
-                  <Image src={elements[category][item].cover} alt='Cover image' />
+                <Box ml='3'>
+                  <Image src={elements[category][i]['subject']['cover']} alt='Cover image' />
                 </Box>
               </MenuItem>
             })}
@@ -75,7 +79,7 @@ const Elements = () => {
 
   return (
     <Box className='elementsContainer'>
-      <Heading as='h1' size='lg' p="1.5" noOfLines={1} color="white" backgroundColor="#2563eb" borderRadius="5px" cursor="default">Elements</Heading>
+      <Heading as='h1' size='lg' p='1.5' noOfLines={1} color='white' backgroundColor='messenger.500' borderRadius='5px' cursor='default'>Elements</Heading>
       {listOfElements}
     </Box>
   )

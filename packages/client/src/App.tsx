@@ -8,6 +8,7 @@ import Workspace from './components/Workspace/Workspace'
 import Homepage from './components/Homepage/Homepage'
 import Navbar from './components/Navbar/Navbar'
 import CreateElementPage from './components/CreateElementPage/CreateElementPage'
+import UserPages from './components/UserPages/UserPages'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/app' element={<Workspace />} />
+        <Route path='/pages' element={<UserPages />} />
         <Route path='/create_element' element={<CreateElementPage />} />
         <Route path='/signup' element={<RegForm />} />
         <Route path='/login' element={<LoginForm />} />

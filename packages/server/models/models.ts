@@ -8,6 +8,17 @@ interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttri
   role: string
 }
 
+interface SavedPagesModel extends Model<InferAttributes<SavedPagesModel>, InferCreationAttributes<SavedPagesModel>> {
+  id: CreationOptional<number>
+  pageInfo: JSON
+  userId?: number
+}
+
+interface ImagesModel extends Model<InferAttributes<ImagesModel>, InferCreationAttributes<ImagesModel>> {
+  id: CreationOptional<number>
+  imgName: string
+}
+
 interface ElementsModel extends Model<InferAttributes<ElementsModel>, InferCreationAttributes<ElementsModel>> {
   id: CreationOptional<number>
   name: string
@@ -20,6 +31,14 @@ const User = sequelize.define<UserModel>('user', {
   password: {type: DataTypes.STRING},
   role: {type: DataTypes.STRING, defaultValue: 'USER'}
 })
+
+const SavedPages = sequelize.define<SavedPagesModel>('savedPages', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  pageInfo: {type: DataTypes.JSON, allowNull: false}
+})
+
+User.hasMany(SavedPages)
+SavedPages.belongsTo(User)
 
 const Headers = sequelize.define<ElementsModel>('headers', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -39,9 +58,16 @@ const Footers = sequelize.define<ElementsModel>('footers', {
   subject: {type: DataTypes.JSON, allowNull: false}
 })
 
+const Images = sequelize.define<ImagesModel>('images', {
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  imgName: {type: DataTypes.STRING, allowNull: false, unique: true}
+})
+
 export {
   User,
+  SavedPages,
   Headers,
   Content,
   Footers,
+  Images,
 }

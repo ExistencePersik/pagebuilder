@@ -1,14 +1,16 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { FieldValues } from 'react-hook-form'
 import jwtDecode from 'jwt-decode'
-import { IUser, IUserState } from '../models/models'
+import { IElement, IUser, IUserState } from '../models/models'
 
 const userState: IUserState = {
   user: {} as IUser,
   isAuth: false,
   isLoginError: undefined,
   isSignUpError: undefined,
-  isLoading: false
+  isLoading: false,
+  userPages: [],
+  userPageId: 0
 }
 
 export const registration = createAsyncThunk<IUser, FieldValues, { rejectValue: string }>(
@@ -20,7 +22,7 @@ export const registration = createAsyncThunk<IUser, FieldValues, { rejectValue: 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({...data, role: 'USER'})
-      })
+    })
 
       const _data = await response.json()
 
@@ -44,7 +46,7 @@ export const login = createAsyncThunk<IUser, FieldValues, { rejectValue: string 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({...data})
-      })
+    })
 
       const _data = await response.json()
 
@@ -66,6 +68,7 @@ export const checkUser = createAsyncThunk<IUser, undefined, { rejectValue: strin
     const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/auth`, {
       method: 'GET',
       headers: {
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     })
@@ -84,6 +87,90 @@ export const checkUser = createAsyncThunk<IUser, undefined, { rejectValue: strin
   }
 )
 
+export const addPageOnServer = createAsyncThunk<any, { userId: number; currentElements: IElement['subject']['html'][]; }, { rejectValue: string }>(
+  'user/savePageOnServer',
+  async function (data, { rejectWithValue }) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({...data})
+    })
+
+      const _data = await response.json()
+
+      if (!response.ok) {
+        return rejectWithValue(_data.message)
+      }
+
+      return (_data)
+  }
+)
+
+export const fetchPagesFromServer = createAsyncThunk<any[], number, { rejectValue: string }>(
+  'user/fetchPagesFromServer',
+  async function (userId, { rejectWithValue }) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+
+      const _data = await response.json()
+
+      if (!response.ok) {
+        return rejectWithValue(_data.message)
+      }
+
+      return (_data)
+  }
+)
+
+export const updatePageOnServer = createAsyncThunk<any, { userPageId: number; currentElements: IElement['subject']['html'][]; }, { rejectValue: string }>(
+  'user/updatePageOnServer',
+  async function (data, { rejectWithValue }) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({...data})
+    })
+
+      const _data = await response.json()
+
+      if (!response.ok) {
+        return rejectWithValue(_data.message)
+      }
+
+      return (_data)
+  }
+)
+
+export const deletePageFromServer = createAsyncThunk<any, number, { rejectValue: string }>(
+  'user/deletePageFromServer',
+  async function (id, { rejectWithValue }) {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+
+      const _data = await response.json()
+
+      if (!response.ok) {
+        return rejectWithValue(_data.message)
+      }
+
+      return (_data)
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState: userState,
@@ -93,6 +180,9 @@ const userSlice = createSlice({
       state.isAuth = false
       localStorage.setItem('token', '')
     },
+    setUserPageId(state, action: PayloadAction<number>) {
+      state.userPageId = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -100,6 +190,12 @@ const userSlice = createSlice({
         state.isLoading = true
       })
       .addCase(login.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(addPageOnServer.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updatePageOnServer.pending, (state) => {
         state.isLoading = true
       })
       .addCase(registration.fulfilled, (state, action: PayloadAction<IUser>) => {
@@ -122,6 +218,18 @@ const userSlice = createSlice({
         state.isLoginError = undefined
         state.isSignUpError = undefined
       })
+      .addCase(addPageOnServer.fulfilled, (state) => {
+        state.isLoading = false
+      })
+      .addCase(fetchPagesFromServer.fulfilled, (state, action) => {
+        state.userPages = action.payload
+      })
+      .addCase(updatePageOnServer.fulfilled, (state) => {
+        state.isLoading = false
+      })
+      .addCase(deletePageFromServer.fulfilled, (state, action) => {
+        state.userPages = state.userPages.filter(page => page.id !== action.meta.arg)
+      })
       .addCase(registration.rejected, (state, action: PayloadAction<string | undefined>) => {
         state.isAuth = false
         state.isSignUpError = action.payload
@@ -137,6 +245,6 @@ const userSlice = createSlice({
   }
 })
 
-export const { logout } = userSlice.actions
+export const { logout, setUserPageId } = userSlice.actions
 
 export default userSlice.reducer

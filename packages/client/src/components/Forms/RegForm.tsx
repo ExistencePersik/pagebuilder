@@ -14,7 +14,7 @@ const RegForm = () => {
     formState: { isValid },
   } = useForm()
 
-  const regSubmit = async (data: FieldValues) => {
+  const regSubmit = (data: FieldValues) => {
     dispatch(registration(data))
   }
 

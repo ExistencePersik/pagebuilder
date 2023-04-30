@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/express-fileupload": "^1.4.1",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/sequelize": "^4.28.14",
     "nodemon": "^2.0.20"

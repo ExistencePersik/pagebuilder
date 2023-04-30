@@ -6,7 +6,7 @@ class FootersController {
 
   async create(req: Request, res: Response) {
     try {
-      const {name, subject} = req.body;
+      const {name, subject} = req.body
       const elems = await Footers.create({name, subject})
       return res.json(elems)
     }

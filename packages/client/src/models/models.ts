@@ -5,6 +5,7 @@ export interface IElementsState {
   current: IElement['subject']['html'][]
   editing: IElement['subject']['html'][]
   isLoading: boolean
+  addedImages: string | undefined
 }
 
 export interface IElement  {
@@ -26,15 +27,21 @@ export interface IUserState {
   isLoginError: string | undefined
   isSignUpError: string | undefined
   isLoading: boolean
+  userPages: any[]
+  userPageId: number
+}
+
+export interface IUserPage {
+
 }
 
 export interface IUser {
-  id?: number
+  id: number
   email: string
   role: string
 }
 
-export type FormValues= {
+export type FormValues = {
   name: string,
   cover: string,
   html: string

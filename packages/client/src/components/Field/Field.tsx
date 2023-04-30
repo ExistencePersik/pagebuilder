@@ -1,62 +1,77 @@
 import { MouseEvent, useRef, useState } from 'react'
-import { Box, Button, ButtonGroup, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, FormControl, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
 import { ArrowDownIcon, ArrowUpIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
+import { useForm } from 'react-hook-form'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { updateCurrentElem, setEditElem } from '../../redux/elemsSlice'
+import { updateCurrentElement, setEditElement, addImage } from '../../redux/elemsSlice'
 import './Field.css'
 import '../../css/_style.css'
 
 const Field = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpenImg, onOpen: onOpenImg, onClose: onCloseImg } = useDisclosure()
   const finalRef = useRef(null)
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isValid },
+  } = useForm()
 
   const ref = useRef<HTMLDivElement>(null!)
   const dispatch = useAppDispatch()
-  const editingElem = useAppSelector(state => state.elements.editing)
-  const elements = useAppSelector(state => state.elements.current)
+  const currentElements = useAppSelector(state => state.elements.current)
 
-  const [editingElemIndex, setEditingElemIndex] = useState(0)
+  const [editingElementIndex, setEditingElementIndex] = useState(0)
+  const [imageTitle, setImageTitle] = useState('')
 
+  const editingHTML = useAppSelector(state => state.elements.editing)
   const getHTML = (element: string) => {
     return {__html: element}
   }
 
   const removeElem = (index: number) => {
-    const elementsArray = [...elements]
+    const elementsArray = [...currentElements]
     elementsArray.splice(index, 1)
 
-    dispatch(updateCurrentElem(elementsArray))
+    dispatch(updateCurrentElement(elementsArray))
   }
 
   const editElem = (index: number) => {
-    const elementsArray = [...elements]
+    const elementsArray = [...currentElements]
     const editingElement = elementsArray.splice(index, 1)
 
-    dispatch(setEditElem(editingElement))
+    dispatch(setEditElement(editingElement))
     onOpen()
-    setEditingElemIndex(index)
+    setEditingElementIndex(index)
   }
 
-  const editHandler = (e: MouseEvent) => {
+  const editHandler = async (e: MouseEvent) => {
     e.preventDefault()
     const clickedItem = e.target as HTMLElement
     clickedItem.setAttribute('contenteditable', 'true')
+
+    if (clickedItem.tagName === 'IMG') {
+      setImageTitle(clickedItem.outerHTML)
+      onOpenImg()
+    }
   }
 
   const saveEditHandler = () => {
-    const elementsArray = [...elements]
+    const elementsArray = [...currentElements]
 
     const txt = ref.current.innerHTML
     const result = txt.replace(/ contenteditable='true'/g, '')
 
-    elementsArray[editingElemIndex] = result
+    elementsArray[editingElementIndex] = result
 
-    dispatch(updateCurrentElem(elementsArray))
+    dispatch(updateCurrentElement(elementsArray))
     onClose()
   }
 
   const moveUp = (index: number) => {
-    const elementsArray = [...elements]
+    const elementsArray = [...currentElements]
 
     if (index !== 0) {
       const curItem = elementsArray[index]
@@ -65,12 +80,12 @@ const Field = () => {
       elementsArray[index] = prevItem
       elementsArray[index - 1] = curItem
 
-      dispatch(updateCurrentElem(elementsArray))
+      dispatch(updateCurrentElement(elementsArray))
     }
   }
 
   const moveDown = (index: number) => {
-    const elementsArray = [...elements]
+    const elementsArray = [...currentElements]
 
     if (index !== elementsArray.length - 1) {
       const curItem = elementsArray[index]
@@ -79,14 +94,33 @@ const Field = () => {
       elementsArray[index] = nextItem
       elementsArray[index + 1] = curItem
 
-      dispatch(updateCurrentElem(elementsArray))
+      dispatch(updateCurrentElement(elementsArray))
     }
   }
 
-  const addedElems = elements.map((element: string, index: number) => {
+  const onAddImage = async (data: any) => {
+    const formData = new FormData()
+    formData.append('file', data.img[0])
+    const imgData = await dispatch(addImage(formData))
+
+    if (imgData) {
+      const addedImageURL = `${process.env.REACT_APP_API_URL}${imgData.payload}`
+      const elementsArray = [...currentElements]
+      const editingElement = elementsArray.splice(editingElementIndex, 1)
+
+      const regExpStr = imageTitle.replace(/ contenteditable="true"/g, '')
+      const regExp = new RegExp(regExpStr, 'g')
+      const result = editingElement[0].replace(regExp, `<img src="${addedImageURL}" alt="img">`)
+      dispatch(setEditElement([result]))
+    }
+    reset()
+    onCloseImg()
+  }
+
+  const addedElements = currentElements.map((element: string, index: number) => {
     return (
       <Box key={index}>
-        <ButtonGroup pl='5px' pt='5px' spacing='1.5'>
+        <ButtonGroup display='flex' justifyContent='flex-end' pr='5px' pt='5px' spacing='1.5'>
           <IconButton aria-label='Delete' icon={<DeleteIcon />} color='white' colorScheme='red' onClick={() => removeElem(index)} />
           <IconButton aria-label='Edit' icon={<EditIcon />} color='white' colorScheme='green' onClick={() => editElem(index)} />
           <ButtonGroup isAttached variant='outline'>
@@ -102,9 +136,9 @@ const Field = () => {
 
   return (
     <Box className='Field'>
-      {addedElems}
+      {addedElements}
       {
-        elements.length === 0 ? <Text color='#979797' fontSize='xl' display='flex' flexDirection='column' alignItems='center' position='relative' top='50%'>
+        currentElements.length === 0 ? <Text color='#979797' fontSize='xl' display='flex' flexDirection='column' alignItems='center' position='relative' top='50%'>
           Your Field is empty!
         </Text> : null
       }
@@ -117,7 +151,7 @@ const Field = () => {
             <Box
               onClick={(e) => editHandler(e)}
               ref={ref}
-              dangerouslySetInnerHTML={getHTML(editingElem[0])}
+              dangerouslySetInnerHTML={getHTML(editingHTML[0])}
             >
             </Box>
           </ModalBody>
@@ -131,6 +165,26 @@ const Field = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+
+      <Modal size='sm' motionPreset='scale' isOpen={isOpenImg} onClose={onCloseImg} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <ModalCloseButton />
+          </ModalHeader>
+          <FormControl as='form' onSubmit={handleSubmit(onAddImage)}>
+            <ModalBody px='0'>
+              <Input py='1' variant='filled' type='file' accept='image/*,.png,.jpg,.gif,.web' {...register('img', { required: true })} />
+            </ModalBody>
+            <ModalFooter>
+              <Button mr={3} colorScheme='green' type='submit' isDisabled={!isValid}>
+                Save Image
+              </Button>
+            </ModalFooter>
+          </FormControl>
+        </ModalContent>
+      </Modal>
+
     </Box>
   )
 }

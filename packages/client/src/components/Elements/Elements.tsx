@@ -2,7 +2,7 @@ import { MouseEvent, useEffect } from 'react'
 import { Box, Button, Heading, Image, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { setCurrentElem, fetchElements } from '../../redux/elemsSlice'
+import { setCurrentElement, fetchElements } from '../../redux/elemsSlice'
 import { IElement } from '../../models/models'
 import './Elements.css'
 
@@ -35,7 +35,7 @@ const Elements = () => {
       }
     })
 
-    dispatch(setCurrentElem(result))
+    dispatch(setCurrentElement(result))
   }
 
   const listOfElements = Object.keys(elements).map((category: string, index: number) => {
@@ -52,13 +52,10 @@ const Elements = () => {
             >
               {category}
           </MenuButton>
-          <MenuList
-            transition='0.1s'
-          >
+          <MenuList>
             {Object.keys(elements[category]).map((_, i: number) => {
               return <MenuItem
                 borderRadius='5'
-                transition='0.2s'
                 _focus={{backgroundColor: '#e5e7eb', transform: 'scale(0.97)', boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}
                 _hover={{backgroundColor: '#e5e7eb', transform: 'scale(0.97)', boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}
                 key={i}

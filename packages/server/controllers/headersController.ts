@@ -4,7 +4,7 @@ import { Headers } from '../models/models.js'
 class HeadersController {
 
   async create(req: Request, res: Response) {
-    const {name, subject} = req.body;
+    const {name, subject} = req.body
     const elems = await Headers.create({name, subject})
     return res.json(elems)
   }

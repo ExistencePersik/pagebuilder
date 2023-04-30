@@ -1,6 +1,7 @@
 .footer2 {
   background-color: var(--backDark);
   color: white;
+  margin-top: 15px;
 }
 
 .footer2 .container {

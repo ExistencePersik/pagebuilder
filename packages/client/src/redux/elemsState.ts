@@ -1,4 +1,4 @@
-import { IElementsState } from "../models/models";
+import { IElementsState } from "../models/models"
 
 export const elementsState: IElementsState = {
   Elements: {
@@ -42,11 +42,10 @@ export const elementsState: IElementsState = {
           "cover": "./img/cover/header2.jpg",
           "images": {
             "header2-img": "./img/Welcome_2.png",
-            "header2-pin": "./img/searching_2.0.png",
           },
           "html": `
           <header class="header2">
-          <img src="header2-img" alt="Workers on break">
+            <img src="./Welcome_2.png" alt="Workers on break">
             <div class="container">
               <h1>Your Landing Page is <span>cool</span></h1>
               <p>
@@ -54,24 +53,20 @@ export const elementsState: IElementsState = {
                 Pellentesque at erat posuere, pellentesque est at, eleifend enim.
               </p>
               <div class="button-container">
-                <a href="#" class="button">Let"s do this!</a>
+                <a href="#" class="button">Let's do this!</a>
               </div>
               <ul>
                 <li>
-                  <h3>Responsive</h3>
-                  <img src="header2-pin"/>
+                  <p>Responsive</p>
                 </li>
                 <li>
-                  <h3>Editable</h3>
-                  <img src="header2-pin"/>
+                  <p>Editable</p>
                 </li>
                 <li>
-                  <h3>Fancy</h3>
-                  <img src="header2-pin"/>
+                  <p>Fancy</p>
                 </li>
                 <li>
-                  <h3>Various</h3>
-                  <img src="header2-pin"/>
+                  <p>Various</p>
                 </li>
               </ul>
             </div>
@@ -327,4 +322,5 @@ export const elementsState: IElementsState = {
   current: [],
   editing: [],
   isLoading: false,
+  addedImages: undefined
 }

@@ -5,6 +5,15 @@
   --backDark: #181818;
 }
 
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 h1 {
   font-size: 60px;
 }
@@ -227,11 +236,6 @@ a {
   margin: 1em 0;
 }
 
-.header2 li img {
-  width: 12em;
-  height: 12em;
-}
-
 .header2 .button-container {
   display: flex;
 }
@@ -242,7 +246,7 @@ a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 5px;
   font-weight: bold;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -272,7 +276,7 @@ a {
     position: absolute;
     width: 30%;
     opacity: 0.3;
-    z-index: -10;
+    z-index: 10;
     top: 1px;
   }
   .header2 h1 {
@@ -297,13 +301,6 @@ a {
   }
   .header2 li:hover {
     transform: scale(1.2);
-  }
-  .header2 li img {
-    position: relative;
-    opacity: 1;
-    width: 4em;
-    height: 4em;
-    z-index: 3;
   }
 }
 @media (min-device-width: 1120px) {
@@ -661,7 +658,7 @@ a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 5px;
   font-weight: bold;
   transition: all 0.3s ease;
   min-width: 300px;
@@ -829,6 +826,7 @@ a {
 .footer1 {
   background-color: var(--backLight);
   color: var(--fontDark);
+  margin-top: 15px;
 }
 
 .footer1 .container {
@@ -976,6 +974,7 @@ a {
 .footer2 {
   background-color: var(--backDark);
   color: white;
+  margin-top: 15px;
 }
 
 .footer2 .container {

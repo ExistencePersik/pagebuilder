@@ -57,7 +57,7 @@ const UserPages = () => {
   })
 
   return (
-    <SimpleGrid spacing={4} mt='15px' ml='29.5px' mr='29.5px' templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+    <SimpleGrid spacing={4} mt='15px' ml='30px' mr='30px' templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
       {mySavedPages}
 
       <Card boxShadow='rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' justify='space-between' align='center'>

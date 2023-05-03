@@ -20,21 +20,22 @@
 }
 
 .content2 h2 {
-  font-size: 75px;
+  font-size: 35px;
   font-weight: 600;
   margin: 0;
 }
 
 .content2 h3 {
-  font-size: 65px;
+  font-size: 30px;
   font-weight: 500;
   margin: 0;
 }
 
 .content2 p {
   font-weight: normal;
-  font-size: 60px;
+  font-size: 30px;
   margin: 30px 0;
+  padding: 0 10px;
 }
 
 .content2 a {
@@ -70,7 +71,7 @@
   background-color: white;
   box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
   margin: 2%;
-  font-size: 60px;
+  font-size: 25px;
 }
 
 .content2 .button-container {
@@ -87,9 +88,10 @@
   border-radius: 5px;
   font-weight: bold;
   transition: all 0.3s ease;
-  min-width: 300px;
-  font-size: 40px;
-  padding: 34px 45px;
+  cursor: pointer;
+  min-width: 115px;
+  font-size: 17px;
+  padding: 14px 15px;
   background: var(--baseBlue);
   color: white;
 }
@@ -109,14 +111,8 @@
     justify-content: center;
     align-items: flex-start;
   }
-  .content2 h2 {
-    font-size: 35px;
-  }
-  .content2 h3 {
-    font-size: 30px;
-  }
   .content2 p {
-    font-size: 30px;
+    padding: 0;
   }
   .content2 ul {
     width: 60%;
@@ -130,7 +126,6 @@
     text-align: left;
     padding: 20px 10px;
     margin: 10px;
-    font-size: 25px;
   }
   .content2 li:hover {
     transform: scale(1.1);

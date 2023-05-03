@@ -6,7 +6,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 0;
-  margin: 5% 1%;
+  margin: 5% 0;
   color: var(--fontDark);
 }
 
@@ -20,7 +20,6 @@
 }
 
 .header1 h1 {
-  font-size: 100px;
   font-weight: 900;
   margin: 0;
 }
@@ -31,8 +30,9 @@
 
 .header1 p {
   font-weight: normal;
-  font-size: 60px;
+  font-size: 30px;
   margin: 30px 0;
+  padding: 0 10px;
 }
 
 .header1 a {
@@ -58,9 +58,11 @@
   font-weight: bold;
   transition: all 0.3s ease;
   cursor: pointer;
-  min-width: 300px;
-  font-size: 40px;
-  padding: 34px 45px;
+  min-width: 115px;
+  font-size: 17px;
+  padding: 14px 15px;
+  margin-right: 15px;
+  margin-left: 15px;
   background: var(--baseBlue);
   color: white;
 }
@@ -82,6 +84,7 @@
     margin: 5%;
   }
   .header1 .container {
+    margin-right: 5%;
     width: 50%;
     text-align: left;
     justify-content: center;
@@ -91,17 +94,12 @@
     width: 50%;
     margin-top: 0px;
   }
-  .header1 h1 {
-    font-size: 45px;
-  }
   .header1 p {
-    font-size: 30px;
+    padding: 0;
   }
-  .header1 .button{
-    min-width: 150px;
-    font-size: 17px;
-    padding: 14px 15px;
-    margin-right: 15px;
+  .header1 .button {
+    min-width: 115px;
+    margin-left: 0px;
   }
   .header1 .button-empty {
     margin-left: 0px;
@@ -112,11 +110,16 @@
   .header1 {
     flex-direction: row;
     margin: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
   .header1 h1 {
     font-size: 60px;
   }
   .header1 p {
     font-size: 20px;
+  }
+  .header1 .button {
+    min-width: 150px;
   }
 }

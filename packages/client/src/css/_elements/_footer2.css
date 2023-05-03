@@ -1,7 +1,7 @@
 .footer2 {
   background-color: var(--backDark);
   color: white;
-  margin-top: 15px;
+  padding-top: 15px;
 }
 
 .footer2 .container {
@@ -32,7 +32,7 @@
 }
 
 .footer2 h4 {
-  font-size: 55px;
+  font-size: 20px;
   font-weight: 500;
   margin: 0;
 }
@@ -43,7 +43,7 @@
 
 .footer2 p {
   font-weight: normal;
-  font-size: 60px;
+  font-size: 18px;
   margin: 0;
   margin-top: 30px;
   margin-bottom: 15px;
@@ -72,14 +72,14 @@
 }
 
 .footer2 li {
-  font-size: 50px;
+  font-size: 20px;
   font-weight: 200;
   padding: 3px;
   padding-left: 0;
 }
 
 .footer2 .sign {
-  font-size: 25px;
+  font-size: 15px;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
@@ -89,11 +89,9 @@
   bottom: 5px;
 }
 
-@media (min-device-width: 480px) {
+@media (min-device-width: 820px) {
   .footer2 .container {
     margin: 0 5%;
-    flex-direction: row;
-    flex-wrap: wrap;
     padding: 0;
     padding-bottom: 5%;
   }
@@ -109,17 +107,16 @@
     margin-top: 0px;
   }
   .footer2 p {
-    font-size: 20px;
+    font-size: 25px;
   }
   .footer2 h4 {
-    font-size: 35px;
     text-align: left;
   }
   .footer2 ul {
     text-align: left;
   }
   .footer2 li {
-    font-size: 30px;
+    font-size: 25px;
   }
   .footer2 .sign {
     font-size: 12px;
@@ -130,12 +127,6 @@
     margin: 0 10%;
     padding-bottom: 3%;
     flex-wrap: nowrap;
-  }
-  .footer2 h4 {
-    font-size: 30px;
-  }
-  .footer2 li {
-    font-size: 25px;
   }
   .footer2 .sign {
     font-size: 15px;

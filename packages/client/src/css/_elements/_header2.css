@@ -6,7 +6,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 0;
-  margin: 5% 1%;
+  margin: 5% 0;
   color: var(--fontDark);
 }
 
@@ -20,10 +20,16 @@
 }
 
 .header2 h1 {
-  font-size: 100px;
+  font-size: 50px;
   font-weight: 900;
   margin: 0;
   position: relative;
+}
+
+.header2 h3 {
+  font-size: 40px;
+  font-weight: 500;
+  margin: 0;
 }
 
 .header2 span {
@@ -35,8 +41,9 @@
 
 .header2 p {
   font-weight: normal;
-  font-size: 60px;
+  font-size: 25px;
   margin: 30px 0;
+  padding: 0 10px;
 }
 
 .header2 a {
@@ -66,9 +73,8 @@
   align-items: center;
   border-radius: 15px;
   transition: all 0.3s ease;
-  padding: 70px 10px;
   color: var(--fontDark);
-  width: 40%;
+  width: 35%;
   background-color: white;
   box-shadow: rgb(0 0 0 / 30%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
   margin: 1em 0;
@@ -88,9 +94,9 @@
   font-weight: bold;
   transition: all 0.3s ease;
   cursor: pointer;
-  min-width: 300px;
-  font-size: 40px;
-  padding: 34px 45px;
+  min-width: 115px;
+  font-size: 17px;
+  padding: 14px 15px;
   background: var(--baseBlue);
   color: white;
 }
@@ -114,14 +120,18 @@
     position: absolute;
     width: 30%;
     opacity: 0.3;
-    z-index: 10;
+    z-index: -10;
     top: 1px;
   }
   .header2 h1 {
     font-size: 50px;
   }
+  .header2 h3 {
+    font-size: 40px;
+  }
   .header2 p {
     font-size: 25px;
+    padding: 0;
   }
   .header2 span {
     border-width: 0.5rem;
@@ -145,10 +155,14 @@
   .header2 h1 {
     font-size: 60px;
   }
+  .header2 h3 {
+    font-size: 25px;
+  }
   .header2 img {
     opacity: 1;
     position: relative;
     width: 35%;
+    z-index: 10;
   }
   .header2 p {
     font-size: 20px;

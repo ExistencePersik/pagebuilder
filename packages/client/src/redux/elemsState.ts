@@ -157,7 +157,7 @@ export const elementsState: IElementsState = {
                 Pellentesque at erat posuere, pellentesque est at, eleifend enim.
               </p>
               <div class="button-container">
-                <a href="#" class="button">Let"s do this!</a>
+                <a href="#" class="button">Let's do this!</a>
               </div>
             </div>
             <ul>

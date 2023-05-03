@@ -62,7 +62,7 @@ const Field = () => {
     const elementsArray = [...currentElements]
 
     const txt = ref.current.innerHTML
-    const result = txt.replace(/ contenteditable='true'/g, '')
+    const result = txt.replace(/ contenteditable="true"/g, '')
 
     elementsArray[editingElementIndex] = result
 

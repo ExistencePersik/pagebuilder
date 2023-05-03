@@ -39,7 +39,7 @@ class FilesController {
             if(err) {
               return console.log(err)
             }
-            console.log("The file was saved!")
+            console.log('The file was saved!')
             return res.json({fileName})
           })
         })

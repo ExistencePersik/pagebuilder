@@ -109,7 +109,7 @@ const Field = () => {
       const editingElement = elementsArray.splice(editingElementIndex, 1)
 
       const regExpStr = imageTitle.replace(/ contenteditable="true"/g, '')
-      const regExp = new RegExp(regExpStr, 'g')
+      const regExp = new RegExp(regExpStr, '')
       const result = editingElement[0].replace(regExp, `<img src="${addedImageURL}" alt="img">`)
       dispatch(setEditElement([result]))
     }

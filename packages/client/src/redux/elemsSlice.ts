@@ -1,11 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { IElement, IElementsState } from '../models/models'
-import { elementsState } from './elemsState'
+import { get, post } from '../services/fetchWrapper'
+
+export const elementsState: IElementsState = {
+  elements: {},
+  current: [],
+  editing: [],
+  isLoading: false,
+  addedImages: undefined
+}
 
 export const fetchElements = createAsyncThunk<{[key: string]: IElement[]}, undefined, {rejectValue: string}>(
   'elements/fetchElements',
   async function (_, {rejectWithValue}) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/elements/all`)
+    const response = await get(`api/elements/all`)
 
     if (!response.ok) {
       return rejectWithValue('Server Error!')
@@ -19,12 +27,7 @@ export const fetchElements = createAsyncThunk<{[key: string]: IElement[]}, undef
 export const createElement = createAsyncThunk<IElement, {data: IElement, type: string}, { rejectValue: string }>(
   'elements/createElements',
   async function ({data, type}, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/elements/${type}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+    const response = await post(`api/elements/${type}`, {
       body: JSON.stringify(data)
     })
 
@@ -41,11 +44,7 @@ export const createElement = createAsyncThunk<IElement, {data: IElement, type: s
 export const addImage = createAsyncThunk<IElementsState['addedImages'], FormData, { rejectValue: string }>(
   'elements/addImage',
   async function (data, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/images/image`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+    const response = await post(`api/images/image`, {
       body: data
     })
 
@@ -62,12 +61,7 @@ export const addImage = createAsyncThunk<IElementsState['addedImages'], FormData
 export const sendHTML = createAsyncThunk<string, { currentElements: IElement['subject']['html'][]; pageTitle: string; }, { rejectValue: string }>(
   'elements/sendHTML',
   async function (data, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/files/file`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+    const response = await post(`api/files/file`, {
       body: JSON.stringify({...data})
     })
 
@@ -84,11 +78,9 @@ export const sendHTML = createAsyncThunk<string, { currentElements: IElement['su
 export const downloadHTML = createAsyncThunk<BlobPart, string | undefined, { rejectValue: string }>(
   'elements/downloadHTML',
   async function (fileName, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/files/file/${fileName}`, {
-      method: 'GET',
+    const response = await get(`api/files/file/${fileName}`, {
       headers: {
-        'Content-Type': 'text/html',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        'Content-Type': 'text/html'
       }
     })
 
@@ -130,7 +122,7 @@ const elementsSlice: Slice = createSlice({
         state.isLoading = true
       })
       .addCase(fetchElements.fulfilled, (state, action) => {
-        state.Elements = action.payload
+        state.elements = action.payload
       })
       .addCase(createElement.fulfilled, (state) => {
         state.isLoading = false

@@ -13,7 +13,7 @@ const Elements = () => {
     dispatch(fetchElements())
   }, [dispatch])
 
-  const elements: {[index: string]: IElement[]} = useAppSelector(state => state.elements.Elements)
+  const elements: {[index: string]: IElement[]} = useAppSelector(state => state.elements.elements)
 
   const queryElementCategory = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, category: string, index: number) => {
     const element = elements[category][index]

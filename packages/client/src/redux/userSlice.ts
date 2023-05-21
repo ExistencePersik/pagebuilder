@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { FieldValues } from 'react-hook-form'
 import jwtDecode from 'jwt-decode'
 import { IElement, IUser, IUserState } from '../models/models'
+import { _delete, get, post, put } from '../services/fetchWrapper'
 
 const userState: IUserState = {
   user: {} as IUser,
@@ -16,11 +17,7 @@ const userState: IUserState = {
 export const registration = createAsyncThunk<IUser, FieldValues, { rejectValue: string }>(
   'user/registration',
   async function (data, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+    const response = await post(`api/user/signup`, {
       body: JSON.stringify({...data, role: 'USER'})
     })
 
@@ -40,11 +37,7 @@ export const registration = createAsyncThunk<IUser, FieldValues, { rejectValue: 
 export const login = createAsyncThunk<IUser, FieldValues, { rejectValue: string }>(
   'user/login',
   async function (data, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+    const response = await post(`api/user/login`, {
       body: JSON.stringify({...data})
     })
 
@@ -65,13 +58,7 @@ export const login = createAsyncThunk<IUser, FieldValues, { rejectValue: string 
 export const checkUser = createAsyncThunk<IUser, undefined, { rejectValue: string }>(
   'user/checkUser',
   async function (_, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/auth`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    const response = await get(`api/user/auth`)
 
       const _data = await response.json()
 
@@ -90,12 +77,7 @@ export const checkUser = createAsyncThunk<IUser, undefined, { rejectValue: strin
 export const addPageOnServer = createAsyncThunk<any, { userId: number; currentElements: IElement['subject']['html'][]; }, { rejectValue: string }>(
   'user/savePageOnServer',
   async function (data, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+    const response = await post(`api/user/savedPages`, {
       body: JSON.stringify({...data})
     })
 
@@ -112,12 +94,7 @@ export const addPageOnServer = createAsyncThunk<any, { userId: number; currentEl
 export const fetchPagesFromServer = createAsyncThunk<any[], number, { rejectValue: string }>(
   'user/fetchPagesFromServer',
   async function (userId, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages/${userId}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    const response = await get(`api/user/savedPages/${userId}`)
 
       const _data = await response.json()
 
@@ -132,12 +109,7 @@ export const fetchPagesFromServer = createAsyncThunk<any[], number, { rejectValu
 export const updatePageOnServer = createAsyncThunk<any, { userPageId: number; currentElements: IElement['subject']['html'][]; }, { rejectValue: string }>(
   'user/updatePageOnServer',
   async function (data, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      },
+    const response = await put(`api/user/savedPages`, {
       body: JSON.stringify({...data})
     })
 
@@ -154,12 +126,7 @@ export const updatePageOnServer = createAsyncThunk<any, { userPageId: number; cu
 export const deletePageFromServer = createAsyncThunk<any, number, { rejectValue: string }>(
   'user/deletePageFromServer',
   async function (id, { rejectWithValue }) {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/savedPages/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    const response = await _delete(`api/user/savedPages/${id}`)
 
       const _data = await response.json()
 
@@ -178,7 +145,6 @@ const userSlice = createSlice({
     logout(state) {
       state.user = {} as IUser
       state.isAuth = false
-      localStorage.setItem('token', '')
     },
     setUserPageId(state, action: PayloadAction<number>) {
       state.userPageId = action.payload

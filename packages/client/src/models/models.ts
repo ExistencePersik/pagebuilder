@@ -1,5 +1,5 @@
 export interface IElementsState {
-  Elements: {
+  elements: {
     [key: string]: IElement[]
   }
   current: IElement['subject']['html'][]

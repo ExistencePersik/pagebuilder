@@ -45,8 +45,7 @@ const UserPages = () => {
           {<GoFileCode />}
         </CardHeader>
         <CardBody textAlign='center' p='0'>
-          <Text>{myPages[index]['createdAt'].split('T')[0]}</Text>
-          <Text>{myPages[index]['createdAt'].split('T')[1].split('.')[0]}</Text>
+          <Text>{(new Date(myPages[index]['createdAt'].split('T').join(' ').split('.')[0])).toString().split(' (')[0]}</Text>
         </CardBody>
         <CardFooter as={ButtonGroup} spacing='5'>
           <Button onClick={() => onDeletePage(index)}>{<GoX />}</Button>

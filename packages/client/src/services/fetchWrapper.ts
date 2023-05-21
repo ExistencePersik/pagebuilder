@@ -33,18 +33,14 @@ function fetchWrapper(endpoint: string, options: Options = {}) {
     delete reqOptions.headers
   }
 
-  console.log(options)
-  console.log(reqOptions)
   return fetch(`${URL}${endpoint}`, reqOptions)
 }
 
 function get(endpoint: string, options: Options = {}) {
-  console.log(options)
   return fetchWrapper(endpoint, { method: 'GET', ...options })
 }
 
 function post(endpoint: string, options: Options = {}) {
-  console.log(options)
   return fetchWrapper(endpoint, { method: 'POST', ...options })
 }
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { IElement, IElementsState } from '../models/models'
-import { get, post } from '../services/fetchWrapper'
+import { fetchWrapper } from '../services/fetchWrapper'
 
 export const elementsState: IElementsState = {
   elements: {},
@@ -13,7 +13,9 @@ export const elementsState: IElementsState = {
 export const fetchElements = createAsyncThunk<{[key: string]: IElement[]}, undefined, {rejectValue: string}>(
   'elements/fetchElements',
   async function (_, {rejectWithValue}) {
-    const response = await get(`api/elements/all`)
+    const response = await fetchWrapper(`api/elements/all`, {
+      method: 'GET'
+    })
 
     if (!response.ok) {
       return rejectWithValue('Server Error!')
@@ -27,7 +29,8 @@ export const fetchElements = createAsyncThunk<{[key: string]: IElement[]}, undef
 export const createElement = createAsyncThunk<IElement, {data: IElement, type: string}, { rejectValue: string }>(
   'elements/createElements',
   async function ({data, type}, { rejectWithValue }) {
-    const response = await post(`api/elements/${type}`, {
+    const response = await fetchWrapper(`api/elements/${type}`, {
+      method: 'POST',
       body: JSON.stringify(data)
     })
 
@@ -44,7 +47,8 @@ export const createElement = createAsyncThunk<IElement, {data: IElement, type: s
 export const addImage = createAsyncThunk<IElementsState['addedImages'], FormData, { rejectValue: string }>(
   'elements/addImage',
   async function (data, { rejectWithValue }) {
-    const response = await post(`api/images/image`, {
+    const response = await fetchWrapper(`api/images/image`, {
+      method: 'POST',
       body: data
     })
 
@@ -61,7 +65,8 @@ export const addImage = createAsyncThunk<IElementsState['addedImages'], FormData
 export const sendHTML = createAsyncThunk<string, { currentElements: IElement['subject']['html'][]; pageTitle: string; }, { rejectValue: string }>(
   'elements/sendHTML',
   async function (data, { rejectWithValue }) {
-    const response = await post(`api/files/file`, {
+    const response = await fetchWrapper(`api/files/file`, {
+      method: 'POST',
       body: JSON.stringify({...data})
     })
 
@@ -78,7 +83,8 @@ export const sendHTML = createAsyncThunk<string, { currentElements: IElement['su
 export const downloadHTML = createAsyncThunk<BlobPart, string | undefined, { rejectValue: string }>(
   'elements/downloadHTML',
   async function (fileName, { rejectWithValue }) {
-    const response = await get(`api/files/file/${fileName}`, {
+    const response = await fetchWrapper(`api/files/file/${fileName}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'text/html'
       }

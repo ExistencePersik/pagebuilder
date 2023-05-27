@@ -6,7 +6,7 @@ type Options = {
   body?: any
 }
 
-function fetchWrapper(endpoint: string, options: Options = {}) {
+export function fetchWrapper(endpoint: string, options: Options = {}) {
   const {
     headers,
     method,
@@ -35,21 +35,3 @@ function fetchWrapper(endpoint: string, options: Options = {}) {
 
   return fetch(`${URL}${endpoint}`, reqOptions)
 }
-
-function get(endpoint: string, options: Options = {}) {
-  return fetchWrapper(endpoint, { method: 'GET', ...options })
-}
-
-function post(endpoint: string, options: Options = {}) {
-  return fetchWrapper(endpoint, { method: 'POST', ...options })
-}
-
-function put(endpoint: string, options: Options = {}) {
-  return fetchWrapper(endpoint, { method: 'PUT', ...options })
-}
-
-function _delete(endpoint: string, options: Options = {}) {
-  return fetchWrapper(endpoint, { method: 'DELETE', ...options })
-}
-
-export {get, post, put, _delete}

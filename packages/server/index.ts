@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 3200
 
 const app = express()
 app.use(cors({
-  origin: [process.env.ORIGIN, process.env.ORIGIN_LOCAL]
+  origin: process.env.ORIGIN
 }))
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, '..', 'static')))

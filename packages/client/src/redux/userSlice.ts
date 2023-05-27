@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { FieldValues } from 'react-hook-form'
 import jwtDecode from 'jwt-decode'
 import { IElement, IUser, IUserState } from '../models/models'
-import { _delete, get, post, put } from '../services/fetchWrapper'
+import { fetchWrapper } from '../services/fetchWrapper'
 
 const userState: IUserState = {
   user: {} as IUser,
@@ -17,7 +17,8 @@ const userState: IUserState = {
 export const registration = createAsyncThunk<IUser, FieldValues, { rejectValue: string }>(
   'user/registration',
   async function (data, { rejectWithValue }) {
-    const response = await post(`api/user/signup`, {
+    const response = await fetchWrapper(`api/user/signup`, {
+      method: 'POST',
       body: JSON.stringify({...data, role: 'USER'})
     })
 
@@ -37,7 +38,8 @@ export const registration = createAsyncThunk<IUser, FieldValues, { rejectValue: 
 export const login = createAsyncThunk<IUser, FieldValues, { rejectValue: string }>(
   'user/login',
   async function (data, { rejectWithValue }) {
-    const response = await post(`api/user/login`, {
+    const response = await fetchWrapper(`api/user/login`, {
+      method: 'POST',
       body: JSON.stringify({...data})
     })
 
@@ -58,7 +60,9 @@ export const login = createAsyncThunk<IUser, FieldValues, { rejectValue: string 
 export const checkUser = createAsyncThunk<IUser, undefined, { rejectValue: string }>(
   'user/checkUser',
   async function (_, { rejectWithValue }) {
-    const response = await get(`api/user/auth`)
+    const response = await fetchWrapper(`api/user/auth`, {
+      method: 'GET'
+    })
 
       const _data = await response.json()
 
@@ -77,7 +81,8 @@ export const checkUser = createAsyncThunk<IUser, undefined, { rejectValue: strin
 export const addPageOnServer = createAsyncThunk<any, { userId: number; currentElements: IElement['subject']['html'][]; }, { rejectValue: string }>(
   'user/savePageOnServer',
   async function (data, { rejectWithValue }) {
-    const response = await post(`api/user/savedPages`, {
+    const response = await fetchWrapper(`api/user/savedPages`, {
+      method: 'POST',
       body: JSON.stringify({...data})
     })
 
@@ -94,7 +99,9 @@ export const addPageOnServer = createAsyncThunk<any, { userId: number; currentEl
 export const fetchPagesFromServer = createAsyncThunk<any[], number, { rejectValue: string }>(
   'user/fetchPagesFromServer',
   async function (userId, { rejectWithValue }) {
-    const response = await get(`api/user/savedPages/${userId}`)
+    const response = await fetchWrapper(`api/user/savedPages/${userId}`, {
+      method: 'GET'
+    })
 
       const _data = await response.json()
 
@@ -109,7 +116,8 @@ export const fetchPagesFromServer = createAsyncThunk<any[], number, { rejectValu
 export const updatePageOnServer = createAsyncThunk<any, { userPageId: number; currentElements: IElement['subject']['html'][]; }, { rejectValue: string }>(
   'user/updatePageOnServer',
   async function (data, { rejectWithValue }) {
-    const response = await put(`api/user/savedPages`, {
+    const response = await fetchWrapper(`api/user/savedPages`, {
+      method: 'PUT',
       body: JSON.stringify({...data})
     })
 
@@ -126,7 +134,9 @@ export const updatePageOnServer = createAsyncThunk<any, { userPageId: number; cu
 export const deletePageFromServer = createAsyncThunk<any, number, { rejectValue: string }>(
   'user/deletePageFromServer',
   async function (id, { rejectWithValue }) {
-    const response = await _delete(`api/user/savedPages/${id}`)
+    const response = await fetchWrapper(`api/user/savedPages/${id}`, {
+      method: 'DELETE'
+    })
 
       const _data = await response.json()
 

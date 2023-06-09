@@ -11,27 +11,27 @@ import CreateElementPage from './components/CreateElementPage/CreateElementPage'
 import UserPages from './components/UserPages/UserPages'
 
 function App() {
-  const dispatch = useAppDispatch()
+	const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      dispatch(checkUser())
-    }
-  }, [dispatch])
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			dispatch(checkUser())
+		}
+	}, [dispatch])
 
-  return (
-    <BrowserRouter>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/app' element={<Workspace />} />
-        <Route path='/pages' element={<UserPages />} />
-        <Route path='/create_element' element={<CreateElementPage />} />
-        <Route path='/signup' element={<RegForm />} />
-        <Route path='/login' element={<LoginForm />} />
-      </Routes>
-    </BrowserRouter>
-  )
+	return (
+		<BrowserRouter>
+			<Navbar />
+			<Routes>
+				<Route path='/' element={<Homepage />} />
+				<Route path='/app' element={<Workspace />} />
+				<Route path='/pages' element={<UserPages />} />
+				<Route path='/create_element' element={<CreateElementPage />} />
+				<Route path='/signup' element={<RegForm />} />
+				<Route path='/login' element={<LoginForm />} />
+			</Routes>
+		</BrowserRouter>
+	)
 }
 
 export default App
